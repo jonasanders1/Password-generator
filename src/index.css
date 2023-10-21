@@ -136,6 +136,13 @@ style={{letterSpacing: "5px", fontSize: "2rem", color:"white", padding:"1rem"}} 
 .strength-title{
   font-size: 1.3rem;
 }
+.strength-content{
+  display: flex;
+  gap: 15px;
+}
+.content-title{
+  font-size: 1.3rem;
+}
 .button{
   border: 1px solid var(--green-color);
   width: 100%;
@@ -205,5 +212,14 @@ style={{letterSpacing: "5px", fontSize: "2rem", color:"white", padding:"1rem"}} 
   }
   .strength-title{
     font-size: .8rem;
+  }
+
+  .strength-content{
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .content-title{
+    font-size: 1rem;
   }
 }

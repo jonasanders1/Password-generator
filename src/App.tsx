@@ -127,21 +127,18 @@ function App() {
           >
             <div className="strength-container">
               <p className="strength-title">Strength</p>
-              
-              <div style={{display:"flex"}}>
-              <div style={{display:"flex", alignItems:"center", justifyContent : "center", gap:10}}>
-                  <span style={{fontSize: "1.3rem",}}>{strength == 0 ? "" : strength == 1 ? "WEAK" : strength == 2 ? "GOOD" : strength == 3 ? "STRONG" : strength == 4 ? "SECURE" : ""}</span>
+            
+              <div className="strength-content">
+                  <span className="content-title" style={{color: getColor(strength)}}>{strength == 0 ? "" : strength == 1 ? "WEAK" : strength == 2 ? "GOOD" : strength == 3 ? "STRONG" : strength == 4 ? "SECURE" : ""}</span>
                   {/* Sort the array to show the "true" occurrences fist then loop over the array */}
                   <div style={{display:"flex", gap: 10}}>
                     {strengthArray.sort((a, b) => (a === b ? 0 : a ? -1 : 1)).map((value, index) => (
                       <div key={index} style={{width: 15, height: 30, backgroundColor: value == true ? getColor(strength) : "inherit", border: value == true ? `1px solid ${getColor(strength)}` : "1px solid white", transition:"background 300ms ease"}}>  
                       </div>
-                   
                       ))}
                   </div>
-                </div>
-
               </div>
+              
             </div>
             <div>
               <button className={`${strength ? "button active" : "button disabled"}`} onClick={generatePassword}>Generate</button>

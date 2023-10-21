@@ -53,7 +53,7 @@ body{
   text-align: start;
   background-color: var(--form-bg-color);
   overflow-y: hidden;
-  overflow-y: scroll;
+  overflow-x: scroll;
   width: 100%;
   display: flex;
   align-items: center;

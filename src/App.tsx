@@ -13,7 +13,7 @@ enum PasswordStrength {
 }
 
 function App() {
-  const [strength, setStrength] = useState(0)
+  let [strength, setStrength] = useState(0)
   const [characterLength, setCharacterLength] = useState(20)
   const [includeUppercase, setIncludeUppercase] = useState(false)
   const [includeLowercase, setIncludeLowercase] = useState(false)
@@ -28,17 +28,40 @@ function App() {
     const newStrengthArray = [includeLowercase, includeUppercase, includeNumbers, includeSymbols];
     // array that just stores the true values
     const newStrength = newStrengthArray.filter(value => value === true).length;
-  
+    
     setStrengthArray(newStrengthArray);
     setStrength(newStrength);
-
   }, [includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
   
   const setCharacters = (e : ChangeEvent<HTMLInputElement> ) => {
     setCharacterLength(parseInt(e.target.value))
   }
 
+  const getColor = (strength : number) => {
 
+    switch (strength){
+      case strength = 0:
+        console.log('inherit')
+        return 'inherit'
+      break;
+      case strength = 1:
+        console.log('red')
+        return '#D94E41'
+      break;
+      case strength = 2:
+        console.log('orange')
+        return '#F2921D'
+      break;
+      case strength = 3:
+        console.log('purple')
+        return '#F2AE2E'
+      break;
+      case strength = 4:
+        console.log('green')
+        return '#a5ffaf'
+      break;
+    }
+  }
   
   const generatePassword = () => {
     setCopied(false)
@@ -117,11 +140,13 @@ function App() {
               
               <div style={{display:"flex"}}>
               <div style={{display:"flex", alignItems:"center", justifyContent : "center", gap:10}}>
-                  <span style={{fontSize: "1.3rem"}}>{strength == 0 ? "WEAK" : strength == 1 ? "NORMAL" : strength == 2 ? "GOOD" : strength == 3 ? "STRONG" : strength == 4 ? "STRONG" : ""}</span>
+                  <span style={{fontSize: "1.3rem",}}>{strength == 0 ? "" : strength == 1 ? "WEAK" : strength == 2 ? "GOOD" : strength == 3 ? "STRONG" : strength == 4 ? "SECURE" : ""}</span>
                   {/* Sort the array to show the "true" occurrences fist then loop over the array */}
                   <div style={{display:"flex", gap: 10}}>
                     {strengthArray.sort((a, b) => (a === b ? 0 : a ? -1 : 1)).map((value, index) => (
-                      <div key={index} style={{width: 15, height: 30, backgroundColor: value == true ? "#f5ce6a" : "inherit", border: value == true ? "1px solid #f5ce6a" : "1px solid white", transition:"background 300ms ease"}}></div>
+                      <div key={index} style={{width: 15, height: 30, backgroundColor: value == true ? getColor(strength) : "inherit", border: value == true ? `1px solid ${getColor(strength)}` : "1px solid white", transition:"background 300ms ease"}}>  
+                      </div>
+                   
                       ))}
                   </div>
                 </div>

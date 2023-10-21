@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import MyCheckbox from "./components/Checkbox";
-import MySlider from "./components/slider";
+import { MySlider } from "./components/slider";
 import {FaRegCopy} from 'react-icons/fa'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 

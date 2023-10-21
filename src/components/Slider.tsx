@@ -1,7 +1,7 @@
 import Slider from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 
-const MySlider = styled(Slider)({
+export const MySlider = styled(Slider)({
   color: 'black',
   height: 8,
   '& .MuiSlider-track': {

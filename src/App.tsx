@@ -2,6 +2,8 @@ import { ChangeEvent, useEffect, useState } from "react";
 import "./App.css";
 import MyCheckbox from "./components/Checkbox";
 import MySlider from "./components/slider";
+import {FaRegCopy} from 'react-icons/fa'
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 enum PasswordStrength {
   "STRONG",
@@ -19,6 +21,7 @@ function App() {
   const [includeSymbols, setIncludeSymbols] = useState(false)
   const [strengthArray, setStrengthArray] = useState([false, false, false, false])
   const [password, setPassword] = useState('')
+  const [copied, setCopied] = useState(false)
   
   useEffect(() => {
     // array for the booleans
@@ -38,6 +41,7 @@ function App() {
 
   
   const generatePassword = () => {
+    setCopied(false)
     if(strength > 0){
       let reference = ""
       let password = ""
@@ -71,10 +75,15 @@ function App() {
       <div className="card">
         {/* Generated Password */}
         <div className="password">
-          <h3 style={{letterSpacing: "5px", fontSize: "2rem", color:"gray", padding:"1rem"}}>{password ? password : "P4$w0RD"}</h3>
-          <div className="copy-container">
-            <span>copy</span>
+          <h3 style={{letterSpacing: "5px", fontSize: "2rem", color:"white", padding:"1rem"}}>{password ? password : "P4$w0RD"}</h3>
+          <CopyToClipboard text={password} onCopy={() => ({copied: true})}  >
+          <div className="copy-container" onClick={() => setCopied(true)}>
+            <div style={{display:"flex", justifyContent:"center", alignItems:"center", gap:5}} >
+              <FaRegCopy size={25} className='copy-icon'/>
+              <span>{copied ? "Copied" : "Copy"}</span>
+            </div>
           </div>
+          </CopyToClipboard>
         </div>
         {/* Password settings */}
 

@@ -80,9 +80,17 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
+/* .copy-icon:hover{
+  color: var(--green-color);
+  transition: color 100ms ease-in;
+} */
 
+.copy-container:hover{
+  cursor: pointer;
+  color: var(--green-color);
+  transition: color 100ms ease-in;
+}
 
 .card-main{
   text-align: start;

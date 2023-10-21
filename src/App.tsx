@@ -93,7 +93,7 @@ function App() {
       <div className="card">
         {/* Generated Password */}
         <div className="password">
-          <h3 style={{letterSpacing: "5px", fontSize: "2rem", color:"white", padding:"1rem"}}>{password ? password : "P4$w0RD"}</h3>
+          <h3 className="password-label">{password ? password : "P4$w0RD"}</h3>
           <CopyToClipboard text={password} onCopy={() => ({copied: true})}  >
           <div className="copy-container" onClick={() => setCopied(true)}>
             <div style={{display:"flex", justifyContent:"center", alignItems:"center", gap:5}} >
@@ -122,16 +122,11 @@ function App() {
             <MyCheckbox isChecked={includeSymbols} setChecked={setIncludeSymbols} label="include symbols" />
           </div>
 
-          <div
-            style={{
-              padding: "1rem 2rem",
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.5rem",
-            }}
+          <div className="footer"
+          
           >
             <div className="strength-container">
-              <p style={{fontSize: "1.3rem"}}>Strength</p>
+              <p className="strength-title">Strength</p>
               
               <div style={{display:"flex"}}>
               <div style={{display:"flex", alignItems:"center", justifyContent : "center", gap:10}}>

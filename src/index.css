@@ -60,6 +60,17 @@ body{
   align-self: start;
   justify-content: space-between;
   position: relative;
+  min-height: 45px;
+}
+
+/* 
+style={{letterSpacing: "5px", fontSize: "2rem", color:"white", padding:"1rem"}} */
+
+.password-label{
+  letter-spacing: 5px;
+  font-size: 2rem;
+  color: white;
+  padding: 1rem;
 }
 .shadow{
   height: 70%;
@@ -113,7 +124,6 @@ body{
 }
 .checkbox-container {
   padding: 0rem 1.3rem;
-  
 }
 .strength-container{
   text-transform: uppercase;
@@ -122,6 +132,9 @@ body{
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.strength-title{
+  font-size: 1.3rem;
 }
 .button{
   border: 1px solid var(--green-color);
@@ -142,4 +155,55 @@ body{
   background-color: inherit;
   color: var(--green-color);
 
+}
+
+
+
+.footer{
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .wrapper{
+    padding: .5;
+  }
+  .slider-container{
+    padding: .5rem 1rem;
+  }
+  .checkbox-container {
+    padding: 0rem .5rem; 
+  }
+  .strength-container{
+    padding: 1rem;
+    width: 100%;
+  }
+  .footer{
+    padding: .5rem 1rem;
+  }
+
+  .title{
+    font-size: 1rem;
+  }
+  .password-label{
+    font-size: .9rem;
+  }
+  .checkbox-container > * {
+    font-size: .8rem;
+  }
+  .strength-container{
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    align-items: start;
+    
+  }
+  .strength-container * {
+    font-size: .8rem;
+  }
+  .strength-title{
+    font-size: .8rem;
+  }
 }

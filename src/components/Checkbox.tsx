@@ -1,6 +1,6 @@
 
 import { Checkbox } from '@mui/material'
-import { Dispatch, SetStateAction, useEffect } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 
 
 interface CheckboxProps {

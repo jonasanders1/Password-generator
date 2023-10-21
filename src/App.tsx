@@ -116,7 +116,7 @@ function App() {
           </div>
           {/* Checkbox */}
           <div>
-            <MyCheckbox isChecked={includeUppercase} setChecked={setIncludeUppercase} label="include uppercase letters"  />
+            <MyCheckbox isChecked={includeUppercase} setChecked={setIncludeUppercase  } label="include uppercase letters"  />
             <MyCheckbox isChecked={includeLowercase} setChecked={setIncludeLowercase} label="include lowercase letters" />
             <MyCheckbox isChecked={includeNumbers} setChecked={setIncludeNumbers} label="include numbers" />
             <MyCheckbox isChecked={includeSymbols} setChecked={setIncludeSymbols} label="include symbols" />

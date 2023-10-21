@@ -1,6 +1,6 @@
 
 import { Checkbox } from '@mui/material'
-import { Dispatch, SetStateAction } from 'react'
+import { Dispatch, SetStateAction, useEffect } from 'react'
 
 
 interface CheckboxProps {
@@ -11,6 +11,8 @@ interface CheckboxProps {
 
 
 const MyCheckbox: React.FC<CheckboxProps> = ({label, setChecked, isChecked}) => {
+
+
   return (
     <div className='checkbox-container'>
       <Checkbox checked={isChecked} onChange={() => setChecked(prev => !prev)} sx={{color:'gray','&.Mui-checked': {color: '#a5ffaf'}}}/>

@@ -4,10 +4,10 @@ import MyCheckbox from "./components/Checkbox";
 import MySlider from "./components/slider";
 
 enum PasswordStrength {
-  "STRONG" = 4,
-  "MEDIUM" = 3,
-  "NORMAL" = 2,
-  "WEAK" = 1
+  "STRONG",
+  "MEDIUM",
+  "NORMAL",
+  "WEAK",
 }
 
 function App() {
@@ -18,21 +18,51 @@ function App() {
   const [includeNumbers, setIncludeNumbers] = useState(false)
   const [includeSymbols, setIncludeSymbols] = useState(false)
   const [strengthArray, setStrengthArray] = useState([false, false, false, false])
+  const [password, setPassword] = useState('')
   
-  let strengthValue = 0
   useEffect(() => {
-    // an array of all the booleans
-    setStrengthArray([includeLowercase, includeUppercase, includeNumbers, includeSymbols])
-    // console.log(strengthArray)
-    // keeps track of how many of the checkboxes that is checked
-    strengthValue = strengthArray.filter(value =>  value === true).length
-    setStrength(strengthValue)
-    
+    // array for the booleans
+    const newStrengthArray = [includeLowercase, includeUppercase, includeNumbers, includeSymbols];
+    // array that just stores the true values
+    const newStrength = newStrengthArray.filter(value => value === true).length;
+  
+    setStrengthArray(newStrengthArray);
+    setStrength(newStrength);
 
-  }, [includeUppercase, includeLowercase, includeNumbers, includeSymbols])
-
+  }, [includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
+  
   const setCharacters = (e : ChangeEvent<HTMLInputElement> ) => {
     setCharacterLength(parseInt(e.target.value))
+  }
+
+
+  
+  const generatePassword = () => {
+    if(strength > 0){
+      let reference = ""
+      let password = ""
+      
+      if(includeUppercase == true){
+        reference += "ABCDEFGHIJKLMNOPQRSTUVWXYZÆØÅ"
+      }
+      if(includeLowercase == true){
+        reference += "abcdefghijklmnopqrstuvwxyzæøå"
+      }
+      if(includeNumbers == true){
+        reference += "1234567890"
+      }
+      if(includeSymbols == true){
+        reference += "@#$!"
+      }
+      
+      for(let i = 0; i < characterLength; i++){
+        password += reference[Math.floor(Math.random() * reference.length)]
+      }
+      setPassword(password)
+    }
+    else {
+      setPassword('P4$W0rD')
+    }
   }
 
   return (
@@ -41,7 +71,10 @@ function App() {
       <div className="card">
         {/* Generated Password */}
         <div className="password">
-          <h3 style={{letterSpacing: "5px", fontSize: "2rem", color:"gray"}}>P4$W0rD</h3>
+          <h3 style={{letterSpacing: "5px", fontSize: "2rem", color:"gray", padding:"1rem"}}>{password ? password : "P4$w0RD"}</h3>
+          <div className="copy-container">
+            <span>copy</span>
+          </div>
         </div>
         {/* Password settings */}
 
@@ -52,7 +85,7 @@ function App() {
               <h3>Character length</h3>
               <span>{characterLength}</span>
             </div>
-            <MySlider defaultValue={20} onChange={(e) => setCharacters(e)}/>
+            <MySlider min={0} max={25} defaultValue={20} onChange={(e) => setCharacters(e)}/>
           </div>
           {/* Checkbox */}
           <div>
@@ -71,19 +104,23 @@ function App() {
             }}
           >
             <div className="strength-container">
-              <p>Strength</p>
-              <p>{strength == 0 ? "WEAK" : strength == 1 ? "WEAK" : strength == 2 ? "MEDIUM" : strength == 3 ? "GOOD" : strength == 4 ? "STRONG" : ""}</p>
+              <p style={{fontSize: "1.3rem"}}>Strength</p>
+              
               <div style={{display:"flex"}}>
-
-              {/* Sort the array to show the "true" occurrences fist then loop over the array */}
-              {strengthArray.sort((a, b) => (a === b ? 0 : a ? -1 : 1)).map((value, index) => (
-                <h1 key={index} style={ value == true ? {color: "#a5ffaf"} : {color:"gray"}}>#</h1>
-              ))}
+              <div style={{display:"flex", alignItems:"center", justifyContent : "center", gap:10}}>
+                  <span style={{fontSize: "1.3rem"}}>{strength == 0 ? "WEAK" : strength == 1 ? "NORMAL" : strength == 2 ? "GOOD" : strength == 3 ? "STRONG" : strength == 4 ? "STRONG" : ""}</span>
+                  {/* Sort the array to show the "true" occurrences fist then loop over the array */}
+                  <div style={{display:"flex", gap: 10}}>
+                    {strengthArray.sort((a, b) => (a === b ? 0 : a ? -1 : 1)).map((value, index) => (
+                      <div key={index} style={{width: 15, height: 30, backgroundColor: value == true ? "#f5ce6a" : "inherit", border: value == true ? "1px solid #f5ce6a" : "1px solid white", transition:"background 300ms ease"}}></div>
+                      ))}
+                  </div>
+                </div>
 
               </div>
             </div>
             <div>
-              <button className="button">Generate</button>
+              <button className={`${strength ? "button active" : "button disabled"}`} onClick={generatePassword}>Generate</button>
             </div>
           </div>
         </div>

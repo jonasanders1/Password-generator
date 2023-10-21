@@ -51,9 +51,39 @@ body{
 
 .password {  
   text-align: start;
-  padding: 1rem 2rem;
   background-color: var(--form-bg-color);
+  overflow-y: hidden;
+  overflow-y: scroll;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  align-self: start;
+  justify-content: space-between;
+  position: relative;
 }
+.shadow{
+  height: 70%;
+  padding: 0rem .5rem;
+  background: linear-gradient(90deg, #24232b00, #24232b, #24232b);
+  position: sticky;
+  right: 60px;
+}
+
+.copy-container{
+  border-left: 20px solid #24232b;
+  border-right: 20px solid #24232b;
+  height: 70%;
+  padding: 0rem .5rem;
+  background-color: inherit;
+  position: sticky;
+  right: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+
 .card-main{
   text-align: start;
   background-color: var(--form-bg-color);
@@ -94,7 +124,13 @@ body{
   text-transform: uppercase; 
   transition: all ease 170ms;
 }
-.button:hover{
+
+
+.disabled {
+  opacity: .5;
+}
+.active:hover{
+  cursor: pointer;
   background-color: inherit;
   color: var(--green-color);
 

@@ -1,16 +1,11 @@
-import { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import MyCheckbox from "./components/Checkbox";
 import MySlider from "./components/slider";
 import {FaRegCopy} from 'react-icons/fa'
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
-enum PasswordStrength {
-  "STRONG",
-  "MEDIUM",
-  "NORMAL",
-  "WEAK",
-}
+
 
 function App() {
   let [strength, setStrength] = useState(0)
@@ -32,10 +27,10 @@ function App() {
     setStrengthArray(newStrengthArray);
     setStrength(newStrength);
   }, [includeUppercase, includeLowercase, includeNumbers, includeSymbols]);
-  
-  const setCharacters = (e : ChangeEvent<HTMLInputElement> ) => {
-    setCharacterLength(parseInt(e.target.value))
-  }
+
+  const setCharacters = (_event: Event, value: number | number[]) => {
+    setCharacterLength(value as number)
+  };
 
   const getColor = (strength : number) => {
 
@@ -117,7 +112,7 @@ function App() {
               <h3>Character length</h3>
               <span>{characterLength}</span>
             </div>
-            <MySlider min={0} max={25} defaultValue={20} onChange={(e) => setCharacters(e)}/>
+            <MySlider min={0} max={25} defaultValue={20} onChange={(e, value) => setCharacters(e, value)} />
           </div>
           {/* Checkbox */}
           <div>
